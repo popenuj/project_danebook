@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: project_danebook_production
-  username: project_danebook
-  password: <%= ENV['PROJECT_DANEBOOK_DATABASE_PASSWORD'] %>
