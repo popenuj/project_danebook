@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_one :profile, inverse_of: :user
   accepts_nested_attributes_for :profile, reject_if: :all_blank
+  has_many :posts
 
   before_create :generate_token
 

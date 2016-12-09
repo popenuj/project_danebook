@@ -1,0 +1,58 @@
+<body>
+  <%= render partial: 'shared/navbar' %>
+  <main class="container">
+    <%= render partial: 'shared/user_navbar' %>
+    <div class="row">
+      <section id="about" class="post col-xs-12">
+        <div class="row">
+          <header class="post-header col-xs-12">
+            <h2>Edit About</h2>
+          </header>
+        </div>
+        <div class="row">
+          <section class="post-content col-xs-12">
+            <div class="row">
+              <%= simple_form_for @profile, url: user_profile_path, :method => :patch do |f| %>
+                <div class="information col-md-5">
+                  <h3>Basic Information</h3>
+                  <dl>
+                    <div class="row">
+                      <section class="post-content col-xs-12">
+                        <dl>
+                          <dt>Birthday:</dt>
+                          <dd><%= current_user.profile.birthday %></dd>
+                          <%= f.input :college %>
+                          <%= f.input :hometown %>
+                          <%= f.input :currently_lives  %>
+                        </dl>
+                      </section>
+                    </div>
+                  </dl>
+
+                  <h3>Contact Information</h3>
+                  <dl>
+                    <dt><p>Email:</p></dt>
+                    <dd><%= current_user.email %></dd>
+                    <%= f.input :telephone %>
+                  </dl>
+                </div>
+
+                <div class="personality col-md-7">
+                  <h3>Words To Live By</h3>
+                  <p>
+                    <%= f.input :wtlb %>
+                  </p>
+                  <h3>About Me</h3>
+                  <p>
+                    <%= f.input :about_me %>
+                  </p>
+                </div>
+                <%= f.button :submit%>
+              <% end %>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>

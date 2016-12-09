@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   skip_before_action :authenticate, only: [:new, :create]
 
   def index
+    @post = Post.new
+    @posts = Post.all.order("created_at DESC")
     @users = User.all
   end
 
@@ -29,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    redirect_to user_profile_path(@user)
+    redirect_to user_profile_path(current_user)
   end
 
   private

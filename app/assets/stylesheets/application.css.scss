@@ -14,3 +14,13 @@
  *= require_self
  */
  @import 'styles';
+ button {
+   a {
+    color: #fff;
+   }
+ }
+ .edit-about-btn {
+   display: block;
+   width: 50%;
+   margin: 10px auto;
+ }

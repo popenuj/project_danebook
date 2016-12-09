@@ -1,0 +1,44 @@
+<div class="row">
+  <section class="post post-small col-xs-12">
+    <div class="row">
+      <section class="post-content col-xs-12">
+        <div class="row">
+          <div class="profile col-xs-12">
+            <div class="profile-img pull-left">
+              <a href="about.html"><img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/harry_potter_small.jpg" alt=""></a>
+            </div>
+            <div class="profile-info pull-left">
+              <%= link_to "#{post.user.profile.first_name}", user_path(post.user) %>
+              <p><small>Posted on <%= format_time(post.created_at) %></small></p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <p>
+              <%= post.post_text %>
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="row">
+      <section class="post-footer col-xs-12">
+        <div class="row">
+          <section class="links col-xs-12">
+            <a class="public" href="#">Like</a>
+            <a class="public" href="#">Comment</a>
+            <%= link_to "Delete Post", user_post_path(current_user, post), method: :delete if valid_post_user?(post) %>
+          </section>
+          <section class="likes col-xs-12">
+            <p>
+              <a href="about.html">Hermione Granger</a> likes this
+            </p>
+          </section>
+        </div>
+        <div class="clearfix"></div>
+      </section>
+    </div>
+  </section>
+</div>

@@ -28,6 +28,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass'
 gem 'bcrypt', '~> 3.1.7'
 gem 'conversation_forms', '~> 2.0.1'
+gem 'simple_form'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -37,8 +38,6 @@ group :development, :test do
   gem 'faker', '~> 1.6.6'
   gem 'jazz_fingers'
   gem 'pry-rails'
-  gem 'bullet'
-  gem 'rack-mini-profiler'
 end
 
 group :development do
