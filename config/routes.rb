@@ -6,6 +6,13 @@ Rails.application.routes.draw do
     resource :profile
     resources :posts
   end
+  resources :posts do
+    resources :likes, only: [:new, :create, :destroy]
+  end
+
+  resources :comments do
+    resources :likes, only: [:new, :create, :destroy]
+  end
 
   get '/signup' => 'users#new'
   get '/logout' => 'sessions#destroy'
