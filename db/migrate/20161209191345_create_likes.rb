@@ -3,6 +3,7 @@ class CreateLikes < ActiveRecord::Migration[5.0]
     create_table :likes do |t|
       t.integer :likeable_id
       t.string  :likeable_type
+      t.integer :user_id
 
       t.timestamps
     end

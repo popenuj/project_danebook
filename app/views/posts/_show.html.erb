@@ -20,14 +20,18 @@
             </p>
           </div>
         </div>
-      </section>
+      </stion>
     </div>
 
     <div class="row">
       <section class="post-footer col-xs-12">
         <div class="row">
           <section class="links col-xs-12">
-            <a class="public" href="#">Like</a>
+            <% if current_user.liked_posts.include?(post) %>
+              <%= link_to "Unlike", post_like_path(post),  method: :delete %>
+            <% else %>
+              <%= link_to "Like", post_like_path(post), method: :post %>
+            <% end %>
             <a class="public" href="#">Comment</a>
             <%= link_to "Delete Post", user_post_path(current_user, post), method: :delete if valid_post_user?(post) %>
           </section>

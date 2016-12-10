@@ -7,11 +7,7 @@ Rails.application.routes.draw do
     resources :posts
   end
   resources :posts do
-    resources :likes, only: [:new, :create, :destroy]
-  end
-
-  resources :comments do
-    resources :likes, only: [:new, :create, :destroy]
+    resource :like, only: [:new, :create, :destroy]
   end
 
   get '/signup' => 'users#new'

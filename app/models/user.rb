@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_one :profile, inverse_of: :user
   accepts_nested_attributes_for :profile, reject_if: :all_blank
   has_many :posts
+  has_many :likes
+  has_many :liked_posts, through: :likes, source_type: 'Post', source: :likeable
 
   before_create :generate_token
 
@@ -20,6 +22,7 @@ class User < ApplicationRecord
   def destroy_token
     self.token = nil
   end
+
 
 private
 
