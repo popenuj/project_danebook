@@ -15,7 +15,7 @@ class FriendingsController < ApplicationController
       redirect_to friending_recipient
     else
       flash[:danger] = ["Could not add user as friend!"]
-      redirect_to friend_recipient
+      redirect_to friending_recipient
     end
   end
 

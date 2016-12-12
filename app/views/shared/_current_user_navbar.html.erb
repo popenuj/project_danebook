@@ -16,7 +16,7 @@
         <li><%= link_to "Timeline", users_path(current_user) %></li>
         <li><%= link_to "About", user_profile_path(current_user, current_user.profile)%></li>
         <li><a href="photos.html">Photos</a></li>
-        <li><a href="friends.html">Friends</a></li>
+        <li><%= link_to "Friends", friendings_path %></li>
         <li class="edit"><%= link_to "Edit Your Profile", edit_user_profile_path(current_user) %></li>
       </ul>
     </section>

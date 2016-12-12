@@ -1,1 +1,45 @@
-index.html.erb
+<body>
+  <%= render partial: 'shared/navbar' %>
+  <main class="container">
+    <%= render partial: 'shared/current_user_navbar' %>
+    <div class="row">
+      <section id="about" class="post col-xs-12">
+        <div class="row">
+          <header class="post-header col-xs-12">
+            <h2>Friends</h2>
+          </header>
+        </div>
+        <% if @friends.size > 0 %>
+          <% @friends.each do |friend| %>
+          <div class="col-md-6">
+            <div class="profile profile-bordered">
+              <div class="profile-center">
+
+                <div class="profile-img pull-left">
+                  <a href="#">
+                    <img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/user_silhouette_generic.gif" alt="">
+                    </a></div>
+
+
+                <div class="profile-info pull-left">
+
+                  <%= link_to "#{friend.profile.first_name} #{friend.profile.last_name}", user_profile_path(friend) %>
+
+                  <p class="muted"><%= friend.friended_users.count%> Friends</p>
+                </div>
+                  <button class="edit-button btn btn-primary pull-right"><%= link_to "Unfriend #{friend.profile.first_name}",
+                                  friending_path(friend.id, current_user_id: current_user.id),
+                                  :method => "DELETE" %>
+                  </button>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        <% else %>
+          <p>Please checkout the Timeline or use the search bar to locate your friends on Danebook!</p>
+        <% end %>
+      </section>
+    </div>
+  </main>
+</body>
