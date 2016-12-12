@@ -174,7 +174,7 @@
       </div>
     </div>
     <% @posts.each do |post| %>
-    <%= render partial: '/posts/show', locals: {:post => post} %>
+      <%= render partial: '/posts/show', locals: {:post => post} %>
     <% end %>
     <div class="row">
 
@@ -262,7 +262,8 @@
                       </div>
                     </div>
                   </div>
-                  <form class="form-horizontal">
+
+                  <!-- <form class="form-horizontal">
 
                     <label for="comment-thoughts-2" class="sr-only">Write a Comment..</label>
                     <textarea type="text" id="comment-thoughts-2" name="thoughts" class="form-control" rows="3" placeholder="Write a Comment.."></textarea>
@@ -270,7 +271,7 @@
                     <a href="#">Cancel</a>
                     <button type="submit" class="btn btn-primary pull-right">Comment</button>
 
-                  </form>
+                  </form> -->
                 </section>
               </div>
               <div class="clearfix"></div>

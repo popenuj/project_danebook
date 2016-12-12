@@ -7,10 +7,15 @@ class UsersController < ApplicationController
   def index
     @post = Post.new
     @posts = Post.all.order("created_at DESC")
+    @comment = Comment.new
+    @comments = Comment.all
     @users = User.all
   end
 
   def new
+    if current_user
+      redirect_to users_path
+    end
     @user = User.new
     @user.build_profile
   end

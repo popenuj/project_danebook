@@ -1,0 +1,14 @@
+<div class="row">
+  <section class="post-content col-xs-12">
+    <%= simple_form_for comment, url: user_comments_path(current_user) do |f| %>
+      <%= f.input :post_text %>
+  </section>
+</div>
+
+<div class="row">
+  <section class="post-footer col-xs-12">
+    <%= f.button :submit %>
+    <div class="clearfix"></div>
+    <% end %>
+  </section>
+</div>

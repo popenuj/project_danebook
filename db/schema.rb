@@ -21,8 +21,6 @@ ActiveRecord::Schema.define(version: 20161212015849) do
     t.text     "comment_text"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["post_id"], name: "index_comments_on_post_id", using: :btree
-    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
   create_table "likes", force: :cascade do |t|
