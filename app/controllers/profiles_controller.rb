@@ -7,16 +7,15 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    @profile = current_user.profile
   end
 
   def update
-    @profile = Profile.update(whitelisted_profile_params)
+    @profile = current_user.profile.update(whitelisted_profile_params)
     redirect_to user_profile_path
   end
 
   def show
-    @profile = current_user.profile
+    @user = User.find(params[:user_id ])
   end
 
   def destroy

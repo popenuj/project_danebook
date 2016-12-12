@@ -9,7 +9,7 @@
               <p>About</p>
             </header>
           </div>
-          <%= render partial: 'shared/basic_about' %>
+          <%= render partial: 'shared/basic_about', locals: {:user => current_user}  %>
         </section>
       </div>
 

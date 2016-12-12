@@ -10,7 +10,7 @@
           </header>
         </div>
         <div class="row">
-          <%= simple_form_for @profile, url: user_profile_path, :method => :patch do |f| %>
+          <%= simple_form_for current_user.profile, url: user_profile_path, :method => :patch do |f| %>
             <section class="post-content col-xs-12">
               <div class="row">
                 <div class="information col-md-5">

@@ -1,11 +1,12 @@
 <body>
   <%= render partial: 'shared/navbar' %>
   <main class="container">
-    <%= render partial: 'shared/user_navbar' %>
+    <%= render partial: 'shared/current_user_navbar' %>
     <div class="row">
       <section id="about" class="post col-xs-12">
         <div class="row">
           <header class="post-header col-xs-12">
+            <button class="edit-button btn btn-primary"><%= link_to "Edit Your Profile", edit_user_profile_path(current_user) %></button>
             <h2>About</h2>
           </header>
         </div>
@@ -15,26 +16,26 @@
               <div class="information col-md-5">
                 <h3>Basic Information</h3>
                 <dl>
-                  <%= render partial: 'shared/basic_about', locals: {:user => @user} %>
+                  <%= render partial: 'shared/basic_about', locals: {:user => current_user} %>
                 </dl>
 
                 <h3>Contact Information</h3>
                 <dl>
                   <dt><p>Email:</p></dt>
-                  <dd><%= @user.email %></dd>
+                  <dd><%= current_user.email %></dd>
                   <dt><p>Telephone:</p></dt>
-                  <dd><%= @user.profile.telephone %></dd>
+                  <dd><%= current_user.profile.telephone %></dd>
                 </dl>
               </div>
 
               <div class="personality col-md-7">
                 <h3>Words To Live By</h3>
                 <p>
-                    <%= @user.profile.wtlb %>
+                    <%= current_user.profile.wtlb %>
                 </p>
                 <h3>About Me</h3>
                 <p>
-                    <%= @user.profile.about_me %>
+                    <%= current_user.profile.about_me %>
                 </p>
               </div>
             </div>
