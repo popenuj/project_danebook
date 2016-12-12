@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resource :like, only: [:new, :create, :destroy]
   end
 
+  resources :friendings, only: [:create, :destroy, :index, :show]
+
   get '/signup' => 'users#new'
   get '/logout' => 'sessions#destroy'
   get '/login' => 'sessions#new'
