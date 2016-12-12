@@ -6,6 +6,14 @@ class User < ApplicationRecord
   has_many :liked_posts, through: :likes, source_type: 'Post', source: :likeable, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :liked_comments, through: :likes, source_type: 'Comment', source: :likeable, dependent: :destroy
+  has_many :initiated_friendings, foreign_key: :friender_id,
+                                   class_name: "Friending"
+  has_many :friended_users, through: :initiated_friendings,
+                             source: :friend_recipient
+  has_many :received_friendings, foreign_key: :friend_id,
+                                  class_name: "Friending"
+  has_many :users_friended_by, through: :received_friendings,
+                                source: :friend_initiator
 
   before_create :generate_token
 
