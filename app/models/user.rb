@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :likes
   has_many :liked_posts, through: :likes, source_type: 'Post', source: :likeable
+  has_many :comments
 
   before_create :generate_token
 

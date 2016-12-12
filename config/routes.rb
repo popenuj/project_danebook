@@ -5,8 +5,14 @@ Rails.application.routes.draw do
   resources :users do
     resource :profile
     resources :posts
+    resources :comments, only: [:show, :new, :create, :edit, :destroy]
   end
+
   resources :posts do
+    resource :like, only: [:new, :create, :destroy]
+  end
+
+  resources :comments do
     resource :like, only: [:new, :create, :destroy]
   end
 
