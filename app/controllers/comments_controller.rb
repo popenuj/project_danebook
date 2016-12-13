@@ -13,12 +13,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
     @comment = Comment.find(params[:id])
     if @comment.destroy
@@ -27,9 +21,6 @@ class CommentsController < ApplicationController
       flash[:danger] = "There was a problem with your request!"
       render users_path
     end
-  end
-
-  def show
   end
 
   private

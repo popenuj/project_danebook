@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  # before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, except: [:index, :show, :new, :create]
 
   skip_before_action :authenticate, only: [:new, :create]
@@ -9,6 +8,7 @@ class UsersController < ApplicationController
     @posts = Post.all.order("created_at DESC")
     @comment = Comment.new
     @comments = Comment.all
+    @friends = current_user.friended_users
     @users = User.all
   end
 

@@ -5,7 +5,7 @@ class FriendingsController < ApplicationController
   end
 
   def show
-    @friends = current_user.friended_users
+    @friends = User.all.where("profile.first_name LIKE ?, params(:input)")
   end
 
   def create

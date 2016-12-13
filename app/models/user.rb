@@ -29,17 +29,16 @@ class User < ApplicationRecord
     save!
   end
 
-  def destroy_token
-    self.token = nil
-  end
-
-
 private
 
     def generate_token
       begin
         self[:token] = SecureRandom.urlsafe_base64
       end while User.exists?(:token => self[:token])
+    end
+
+    def destroy_token
+      self.token = nil
     end
 
 end

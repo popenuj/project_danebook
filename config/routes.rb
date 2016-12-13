@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :users do
     resource :profile
     resources :posts
-    resources :comments, only: [:show, :new, :create, :edit, :destroy]
+    resources :comments
   end
 
   resources :posts do

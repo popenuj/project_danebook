@@ -17,12 +17,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
     @post = Post.find(params[:id])
     if @post.destroy
@@ -31,9 +25,6 @@ class PostsController < ApplicationController
       flash[:danger] = "There was a problem with your request!"
       render users_path
     end
-  end
-
-  def show
   end
 
   private
