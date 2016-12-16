@@ -8,8 +8,6 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(whitelisted_comment_params)
     if @comment.save
       redirect_to users_path
-    else
-      skdjfaasfdas
     end
   end
 

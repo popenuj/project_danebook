@@ -51,7 +51,7 @@
                     <a href="about.html"><img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/harry_potter_small.jpg" alt=""></a>
                   </div>
                   <div class="comment pull-left">
-                    <%= link_to "#{post.user.profile.first_name} #{post.user.profile.last_name}", user_path(comment.user) %>
+                    <%= link_to "#{comment.user.profile.first_name} #{comment.user.profile.last_name}", user_path(comment.user) %>
                     <p><small>Said on <%= format_time(comment.created_at) %></small></p>
                   </div>
                 </div>
