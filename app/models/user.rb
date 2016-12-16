@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_one :profile, inverse_of: :user, dependent: :destroy
-  has_many :user_photos, dependent: :destroy
+  has_many :photos, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes,

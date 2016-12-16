@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
 
   def index
-    @photos = current_user.photos.all
+    @photos = User.find(params[:user_id]).photos
   end
 
   def new
@@ -9,19 +9,27 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = Photo.new(whitelisted_photo_params)
-    if @photo.save
-      redirect_to photos_path
+    @photo = current_user.photos.build(whitelisted_photo_params)
+    if @photo.save!
+      redirect_to @photo
     else
-      flash.now[:error] = "Your photo could not be uploaded"
-      render photo_path
+      flash.now[:error] = ["Your photo could not be uploaded"]
+      render new_photo_path
     end
+  end
+
+  def show
+    @photo = Photo.find(params[:id])
+  end
+
+  def destroy
+    @photo = Photo.find(params[:id])
   end
 
   private
 
   def whitelisted_photo_params
-    params.require(:photo).permit(:user_photo)
+    params.require(:photo).permit(:photo)
   end
 
 end

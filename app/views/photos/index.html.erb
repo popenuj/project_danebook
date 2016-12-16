@@ -1,11 +1,43 @@
-<h1>photos</h1>
-<% if @photos %>
-  <%= @photos.each do |photo| %>
-    <%= image_tag photo.expiring_url(60) %>
-  <% end %>
-<% else %>
-  <p>Upload photos to share with friends!</p>
-<% end %>
-<button>
-  <%= link_to "Upload photo!" photo_path %>
-</button>
+<body>
+  <%= render partial: 'shared/navbar' %>
+  <main class="container">
+    <%= render partial: 'shared/current_user_navbar' %>
+    <div class="row">
+      <section id="about" class="post col-xs-12">
+        <div class="row">
+          <header class="post-header col-xs-12">
+            <h2>Friends</h2>
+          </header>
+        </div>
+        <% if @photos.size > 0 %>
+          <% @photos.each do |photo| %>
+          <div class="col-md-6">
+            <div class="profile profile-bordered">
+              <div class="profile-center">
+
+                <div class="profile-img pull-left">
+                  <a href="#">
+                    <img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/user_silhouette_generic.gif" alt="">
+                    </a></div>
+
+
+                <div class="profile-info pull-left">
+
+                  <%= link_to photo_path(photo) do %>
+                    <%= image_tag photo.photo.expiring_url(60) %>
+                  <% end %>
+
+
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        <% else %>
+          <p>Please upload some photos!</p>
+        <% end %>
+      </section>
+    </div>
+  </main>
+</body>

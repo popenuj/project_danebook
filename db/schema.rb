@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216183348) do
+ActiveRecord::Schema.define(version: 20161216193025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,8 +40,13 @@ ActiveRecord::Schema.define(version: 20161216183348) do
   end
 
   create_table "photos", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -69,15 +74,6 @@ ActiveRecord::Schema.define(version: 20161216183348) do
     t.integer  "profile_photo_id"
     t.integer  "cover_photo_id"
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
-  end
-
-  create_table "user_photos", force: :cascade do |t|
-    t.string   "user_photo_file_name"
-    t.string   "user_photo_content_type"
-    t.integer  "user_photo_file_size"
-    t.datetime "user_photo_updated_at"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
   end
 
   create_table "users", force: :cascade do |t|
