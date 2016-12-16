@@ -23,31 +23,6 @@ class User < ApplicationRecord
   before_create :generate_token
   has_secure_password
   accepts_nested_attributes_for :profile, reject_if: :all_blank
-  has_attached_file :profile_picture,
-              styles: { thumb: "100x100#" },
-     convert_options: { thumb: '-strip
-                                -quality 30%
-                                -resize 600x
-                                -sharpen 0x0.5
-                                source.jpg
-                                output.jpg' }
-  has_attached_file :cover_photo,
-              styles: { thumb: "100x100#" },
-      convert_options: {thumb: '-strip
-                                -quality 30%
-                                -resize 600x
-                                -sharpen 0x0.5
-                                source.jpg
-                                output.jpg' }
-  validates_attachment :profile_picture,
-           content_type: { content_type: ["image/jpeg",
-                                          "image/gif",
-                                          "image/png"] }
-  validates_attachment :cover_photo,
-           content_type: { content_type: ["image/jpeg",
-                                          "image/gif",
-                                          "image/png"] }
-
 
   validates_format_of :email,
                   with: /\A[^@]+@[^@]+\.[^@]+\Z/,

@@ -18,7 +18,8 @@ class ProfilesController < ApplicationController
                                     :telephone,
                                     :wtlb,
                                     :about_me,
-                                    :profile_picture)
+                                    :profile_photo_id,
+                                    :cover_photo_id)
   end
 
 end

@@ -1,0 +1,11 @@
+<h1>photos</h1>
+<% if @photos %>
+  <%= @photos.each do |photo| %>
+    <%= image_tag photo.expiring_url(60) %>
+  <% end %>
+<% else %>
+  <p>Upload photos to share with friends!</p>
+<% end %>
+<button>
+  <%= link_to "Upload photo!" photo_path %>
+</button>

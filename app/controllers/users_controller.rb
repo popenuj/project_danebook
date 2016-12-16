@@ -45,17 +45,17 @@ class UsersController < ApplicationController
         params[:user][:profile_attributes][:birthday] = parse_date_select
       end
       params.require(:user).permit(
-                                    :email,
-                                    :password,
-                                    :password_confirmation,
-                                    {
-                                      profile_attributes:[
-                                                          :first_name,
-                                                          :last_name,
-                                                          :birthday,
-                                                          :gender
-                                                        ]
-                                    }
+                            :email,
+                            :password,
+                            :password_confirmation,
+                          {
+                             profile_attributes:[
+                                               :first_name,
+                                               :last_name,
+                                               :birthday,
+                                               :gender
+                                                ]
+                          }
                                   )
     end
 
