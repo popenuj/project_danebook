@@ -1,11 +1,17 @@
 class User < ApplicationRecord
   has_one :profile, inverse_of: :user, dependent: :destroy
-  accepts_nested_attributes_for :profile, reject_if: :all_blank
+  has_many :user_photos, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :liked_posts, through: :likes, source_type: 'Post', source: :likeable, dependent: :destroy
+  has_many :liked_posts, through: :likes,
+                     source_type: 'Post',
+                          source: :likeable,
+                       dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :liked_comments, through: :likes, source_type: 'Comment', source: :likeable, dependent: :destroy
+  has_many :liked_comments, through: :likes,
+                        source_type: 'Comment',
+                             source: :likeable,
+                          dependent: :destroy
   has_many :initiated_friendings, foreign_key: :friender_id,
                                    class_name: "Friending"
   has_many :friended_users, through: :initiated_friendings,
@@ -14,14 +20,41 @@ class User < ApplicationRecord
                                   class_name: "Friending"
   has_many :users_friended_by, through: :received_friendings,
                                 source: :friend_initiator
-
   before_create :generate_token
-
   has_secure_password
+  accepts_nested_attributes_for :profile, reject_if: :all_blank
+  has_attached_file :profile_picture,
+              styles: { thumb: "100x100#" },
+     convert_options: { thumb: '-strip
+                                -quality 30%
+                                -resize 600x
+                                -sharpen 0x0.5
+                                source.jpg
+                                output.jpg' }
+  has_attached_file :cover_photo,
+              styles: { thumb: "100x100#" },
+      convert_options: {thumb: '-strip
+                                -quality 30%
+                                -resize 600x
+                                -sharpen 0x0.5
+                                source.jpg
+                                output.jpg' }
+  validates_attachment :profile_picture,
+           content_type: { content_type: ["image/jpeg",
+                                          "image/gif",
+                                          "image/png"] }
+  validates_attachment :cover_photo,
+           content_type: { content_type: ["image/jpeg",
+                                          "image/gif",
+                                          "image/png"] }
 
 
-  validates_format_of :email, with: /\A[^@]+@[^@]+\.[^@]+\Z/, allow_nil: true
-  validates_format_of :password, with: /\A(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}\Z/, allow_nil: true
+  validates_format_of :email,
+                  with: /\A[^@]+@[^@]+\.[^@]+\Z/,
+             allow_nil: true
+  validates_format_of :password,
+                  with: /\A(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}\Z/,
+             allow_nil: true
 
   def regenerate_auth_token
     destroy_token

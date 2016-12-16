@@ -17,7 +17,8 @@ class ProfilesController < ApplicationController
                                     :currently_lives,
                                     :telephone,
                                     :wtlb,
-                                    :about_me)
+                                    :about_me,
+                                    :profile_picture)
   end
 
 end
