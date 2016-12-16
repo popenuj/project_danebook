@@ -31,22 +31,28 @@ class User < ApplicationRecord
                   with: /\A(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}\Z/,
              allow_nil: true
 
+  after_create :queue_welcome_email
+
   def regenerate_auth_token
     destroy_token
     generate_token
     save!
   end
 
+  def generate_token
+    begin
+      self[:token] = SecureRandom.urlsafe_base64
+    end while User.exists?(:token => self[:token])
+  end
+
+  def destroy_token
+    self.token = nil
+  end
+
 private
 
-    def generate_token
-      begin
-        self[:token] = SecureRandom.urlsafe_base64
-      end while User.exists?(:token => self[:token])
-    end
-
-    def destroy_token
-      self.token = nil
+    def queue_welcome_email
+      UserMailer.welcome(self).deliver_later
     end
 
 end
