@@ -32,6 +32,7 @@ class User < ApplicationRecord
              allow_nil: true
 
   after_create :queue_welcome_email
+  after_create :queue_suggest_friends_email
 
   def regenerate_auth_token
     destroy_token
@@ -53,6 +54,10 @@ private
 
     def queue_welcome_email
       UserMailer.welcome(self).deliver_later
+    end
+
+    def queue_suggest_friends_email
+      UserMailer.suggest_friends(self).deliver_later#(wait_until: 5.minutes.from_now)
     end
 
 end
