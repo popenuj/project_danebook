@@ -1,10 +1,7 @@
 <div class="row">
   <header id="profile-header">
     <div class="cover-img">
-      <% get_user %>
-      <% get_profile %>
-      <% get_profile_photo %>
-      <% get_cover_photo %>
+      <% get_navbar_variables %>
       <% if @profile.cover_photo_id %>
         <%= image_tag @cover_photo.photo.expiring_url(60) %>
       <% else %>

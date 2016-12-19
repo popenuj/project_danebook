@@ -6,7 +6,9 @@
       <section id="about" class="post col-xs-12">
         <div class="row">
           <header class="post-header col-xs-12">
-            <button class="edit-button btn btn-primary"><%= link_to "Edit Your Profile", edit_user_profile_path(current_user) %></button>
+            <% if @user == current_user %>
+              <button class="edit-button btn btn-primary"><%= link_to "Edit Your Profile", edit_user_profile_path(@user) %></button>
+            <% end %>
             <h2>About</h2>
           </header>
         </div>
@@ -16,26 +18,26 @@
               <div class="information col-md-5">
                 <h3>Basic Information</h3>
                 <dl>
-                  <%= render partial: 'shared/basic_about', locals: {:user => current_user} %>
+                  <%= render partial: 'shared/basic_about', locals: {:user => @user} %>
                 </dl>
 
                 <h3>Contact Information</h3>
                 <dl>
                   <dt><p>Email:</p></dt>
-                  <dd><%= current_user.email %></dd>
+                  <dd><%= @user.email %></dd>
                   <dt><p>Telephone:</p></dt>
-                  <dd><%= current_user.profile.telephone %></dd>
+                  <dd><%= @user.profile.telephone %></dd>
                 </dl>
               </div>
 
               <div class="personality col-md-7">
                 <h3>Words To Live By</h3>
                 <p>
-                    <%= current_user.profile.wtlb %>
+                    <%= @user.profile.wtlb %>
                 </p>
                 <h3>About Me</h3>
                 <p>
-                    <%= current_user.profile.about_me %>
+                    <%= @user.profile.about_me %>
                 </p>
               </div>
             </div>

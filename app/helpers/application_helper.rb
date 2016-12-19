@@ -16,6 +16,13 @@ module ApplicationHelper
     render partial: 'shared/login_nav'
   end
 
+  def get_navbar_variables
+    get_user
+    get_profile
+    get_profile_photo
+    get_cover_photo
+  end
+
   def get_user
     unless @user
       @user = current_user
