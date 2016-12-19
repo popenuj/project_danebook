@@ -12,15 +12,17 @@
              </button>
           <% elsif current_user.friended_users
                             .pluck(:id).include?(@user.id) %>
-            <button class="edit-button btn btn-primary"><%= link_to "Unfriend #{@user.profile.first_name}",
-                            friending_path(@user.id, current_user_id: current_user.id),
-                            :method => "DELETE" %>
-            </button>
+            <%= link_to friending_path(@user.id, current_user_id: current_user.id), :method => "DELETE" do %>
+              <button class="edit-button btn btn-primary">
+                <%= "Unfriend #{@user.profile.first_name}" %>
+              </button>
+            <% end %>
           <% else %>
-            <button class="edit-button btn btn-primary"><%= link_to "Friend #{@user.profile.first_name}",
-                          friendings_path(id: @user.id, current_user_id: current_user.id),
-                          :method => "POST" %>
-            </button>
+            <%= link_to friendings_path(id: @user.id, current_user_id: current_user.id), :method => "POST" do %>
+              <button class="edit-button btn btn-primary">
+                <%= "Friend #{@user.profile.first_name}" %>
+              </button>
+            <% end %>
           <% end %>
           </header>
         </div>

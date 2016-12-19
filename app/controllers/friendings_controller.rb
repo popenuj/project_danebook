@@ -23,7 +23,7 @@ class FriendingsController < ApplicationController
     unfriended_user = User.find(params[:id])
     current_user.friended_users.delete(unfriended_user)
     flash[:sucess] = ["Successfully unfriended!"]
-    redirect_to root_path
+    redirect_to unfriended_user
   end
 
 end

@@ -6,3 +6,9 @@
     <%= link_to "Make this your cover photo.", user_profile_path( current_user.profile, {cover_photo_id: @photo.id }), method: :put, class: "pull-right" %>
   <% end %>
 <% end %>
+<br>
+<% if current_user.liked_photos.include?(@photo) %>
+  <%= link_to "Unlike this Photo", photo_like_path(@photo),  method: :delete %>
+<% else %>
+  <%= link_to "Like this Photo", photo_like_path(@photo), method: :post %>
+<% end %>
