@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :posts do
     resource :like, only: [:new, :create, :destroy]
+    resources :comments, only: [:new, :create, :destroy]
   end
 
   resources :comments do
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
 
   resources :photos do
     resource :like, only: [:new, :create, :destroy]
+    resources :comments, only: [:new, :create, :destroy]
   end
 
   resources :friendings, only: [:create, :destroy, :index, :show]

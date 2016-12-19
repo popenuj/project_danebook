@@ -32,8 +32,7 @@
             <% else %>
               <%= link_to "Like", post_like_path(post), method: :post %>
             <% end %>
-            <a class="public" href="#">Comment</a>
-            <%= link_to "Delete Post", user_post_path(current_user, post), method: :delete if valid_post_user?(post) %>
+            <%= link_to "Delete Post", user_post_path(current_user, post), method: :delete, class: "pull-right" if valid_post_user?(post) %>
           </section>
           <section class="likes col-xs-12">
             <p>
@@ -42,7 +41,7 @@
         </div>
       </section>
       <% @comments.each do |comment| %>
-        <% if comment.post.id == post.id %>
+        <% if comment.commentable_id == post.id %>
           <div class="row">
             <section class="comment col-xs-12">
               <div class="row">
@@ -71,17 +70,17 @@
             <% else %>
               <%= link_to "Like", comment_like_path(comment), method: :post %>
             <% end %>
-            <%= link_to "Delete Comment", user_comment_path(current_user, comment), method: :delete if valid_post_user?(comment) %>
+            <%= link_to "Delete Comment", post_comment_path(post.id, comment.id), method: :delete, class: "pull-right" if valid_post_user?(comment) %>
           </section>
         <% else %>
           <% next %>
         <% end %>
+        <hr>
       <% end %>
       <div class="row">
         <section class="col-xs-12">
-          <%= simple_form_for @comment, url: user_comments_path(current_user) do |f| %>
+          <%= simple_form_for @comment, url: post_comments_path(post) do |f| %>
             <%= f.input :comment_text %>
-            <%= f.input :post_id, as: :hidden, :input_html => { value: post.id } %>
         </section>
       </div>
       <div class="row">

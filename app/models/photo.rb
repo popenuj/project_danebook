@@ -3,6 +3,7 @@ class Photo < ApplicationRecord
   belongs_to        :user
 
   has_many :likes, :as => :likeable, dependent: :destroy
+  has_many :comments, :as => :commentable, dependent: :destroy
 
   has_attached_file :photo,
               styles: { thumb: "100x100" },

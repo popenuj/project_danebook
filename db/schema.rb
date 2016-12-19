@@ -17,10 +17,11 @@ ActiveRecord::Schema.define(version: 20161216214647) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "post_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
     t.text     "comment_text"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "delayed_jobs", force: :cascade do |t|

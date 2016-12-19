@@ -5,28 +5,26 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = current_user.comments.build(whitelisted_comment_params)
-    if @comment.save
-      redirect_to users_path
+    if params[:post_id]
+      post = Post.find(params[:post_id])
+      current_user.posts.find(post.id).comments.create!(comment_params)
+    else
+      photo = Photo.find(params[:photo_id])
+      current_user.photos.find(photo.id).comments.create!(comment_params)
     end
+    redirect_to :back
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    if @comment.destroy
-      redirect_to users_path
-    else
-      flash[:danger] = "There was a problem with your request!"
-      render users_path
-    end
+    comment = Comment.find(params[:id])
+    comment.destroy!
+    redirect_to :back
   end
 
   private
 
-  def whitelisted_comment_params
-    params.require(:comment).permit(:comment_text,
-                                    :post_id,
-                                    :user_id)
+  def comment_params
+    params.require(:comment).permit(:comment_text).merge(user_id: current_user.id)
   end
 
 end

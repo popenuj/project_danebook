@@ -14,7 +14,7 @@
       <h1 class="profile-username"><%= "#{@user.profile.first_name} " "#{@user.profile.last_name}"%></h1>
     <% end %>
     <section class="profile-img">
-      <% if @profile.cover_photo_id %>
+      <% if @profile.profile_photo_id %>
         <%= image_tag @profile_photo.photo.expiring_url(60) %>
       <% else %>
         <img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/harry_potter_small.jpg" alt="profile">
