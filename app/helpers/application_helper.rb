@@ -36,7 +36,7 @@ module ApplicationHelper
   end
 
   def get_profile_photo
-    if @user.profile.profile_photo
+    if @user.profile.profile_photo_id
       unless @profile_photo
         @profile_photo = Photo.find(current_user.profile.profile_photo_id)
       end
@@ -44,7 +44,7 @@ module ApplicationHelper
   end
 
   def get_cover_photo
-    if @user.profile.profile_photo
+    if @user.profile.cover_photo_id
       unless @cover_photo
         @cover_photo = Photo.find(current_user.profile.cover_photo_id)
       end

@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = current_user.profile.update(whitelisted_profile_params)
-    redirect_to user_profile_path
+    redirect_to :back
   end
 
   def show

@@ -26,6 +26,8 @@ class PhotosController < ApplicationController
 
   def destroy
     @photo = Photo.find(params[:id])
+    @photo.destroy
+    redirect_to current_user
   end
 
   private
