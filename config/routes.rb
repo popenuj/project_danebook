@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'users#new'
   resource :session
   resources :users do
-    resource :profile
+    resource :profile, shallow: true
     resources :posts
     resources :comments
     resources :photos

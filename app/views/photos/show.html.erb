@@ -1,2 +1,8 @@
-<%= image_tag @photo.photo.expiring_url(60) %>
 <%= link_to "View all your photos", user_photos_path(current_user) %>
+<%= image_tag @photo.photo.expiring_url(60) %>
+<% if @photo.user == current_user %>
+  <% if current_user.profile.profile_photo_id != @photo.id %>
+    <%= link_to "Make this your profile photo.", user_profile_path( current_user.profile, {profile_photo_id: @photo.id }), method: :put %>
+    <%= link_to "Make this your cover photo.", user_profile_path( current_user.profile, {cover_photo_id: @photo.id }), method: :put, class: "pull-right" %>
+  <% end %>
+<% end %>
