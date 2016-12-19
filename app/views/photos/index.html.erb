@@ -10,34 +10,25 @@
           </header>
         </div>
         <% if @photos.size > 0 %>
-          <% @photos.each do |photo| %>
           <div class="col-md-6">
             <div class="profile profile-bordered">
               <div class="profile-center">
-
-                <div class="profile-img pull-left">
-                  <a href="#">
-                    <img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/user_silhouette_generic.gif" alt="">
-                    </a></div>
-
-
                 <div class="profile-info pull-left">
-
-                  <%= link_to photo_path(photo) do %>
-                    <%= image_tag photo.photo.expiring_url(60) %>
-                  <% end %>
-
-
+                  <div class="row">
+                    <% @photos.each do |p1, p2, p3| %>
+                      <%= render partial: "shared/photo_row", locals: { p1: p1, p2: p2, p3: p3 } %>
+                    <% end %>
+                  </div>
                 </div>
-                <div class="clearfix"></div>
               </div>
             </div>
           </div>
-          <% end %>
-        <% else %>
-          <p>Please upload some photos!</p>
         <% end %>
       </section>
+      <p>Please upload some photos!</p>
+      <button type="button" name="button">
+        <%= link_to "Upload a Photo", new_photo_path %>
+      </button>
     </div>
   </main>
 </body>

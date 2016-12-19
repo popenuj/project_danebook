@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
 
   def index
-    @photos = User.find(params[:user_id]).photos
+    @photos = User.find(params[:user_id]).photos.each_slice(3)
   end
 
   def new

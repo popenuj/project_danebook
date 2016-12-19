@@ -1,0 +1,19 @@
+<div class="col-xs-4">
+  <%= link_to photo_path(p1) do %>
+    <%= image_tag p1.photo.expiring_url(60), class: "thumbnail" %>
+  <% end %>
+</div>
+<div class="col-xs-4">
+  <% if p2 %>
+    <%= link_to photo_path(p2) do %>
+      <%= image_tag p2.photo.expiring_url(60), class: "thumbnail" %>
+    <% end %>
+  <% end %>
+</div>
+<div class="col-xs-4">
+  <% if p3 %>
+    <%= link_to photo_path(p3) do %>
+      <%= image_tag p3.photo.expiring_url(60), class: "thumbnail" %>
+    <% end %>
+  <% end %>
+</div>
