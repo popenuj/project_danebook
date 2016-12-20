@@ -25,6 +25,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
+gem 'faker', '~> 1.6.6'
 # Use ActiveModel has_secure_password
 gem 'bootstrap-sass'
 gem 'bcrypt', '~> 3.1.7'
@@ -38,7 +39,6 @@ gem 'figaro'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'faker', '~> 1.6.6'
   gem 'jazz_fingers'
   gem 'pry-rails'
   gem 'pry-byebug'
