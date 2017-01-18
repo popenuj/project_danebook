@@ -27,13 +27,16 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    # @comment = Comment.find(params[:id])
+    # respond_to do |format|
+    #   format.js
+    # end
+    # @comment.destroy!
     @post = Post.find(params[:id])
-    if @post.destroy
-      redirect_to users_path
-    else
-      flash[:danger] = "There was a problem with your request!"
-      render users_path
+    respond_to do |format|
+      format.js
     end
+    @post.destroy
   end
 
   private

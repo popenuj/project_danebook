@@ -1,3 +1,4 @@
 var postID = "[data-id=<%= @post.id %>]";
-$(postID).before("<%= j(render partial: 'comments/show', locals: { comment: @comment, post: @post} ) %>");
+$(postID).prev().before("<%= j(render partial: 'comments/show', locals: { comment: @comment, post: @post} ) %>");
 $("#comment_comment_text").val(null);
+$("[data-id='<%= @post.id %>']").slideUp(500)

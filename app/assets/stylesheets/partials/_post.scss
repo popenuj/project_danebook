@@ -8,6 +8,18 @@
       font-weight: bold;
   }
 
+  .toggle-comment-form {
+    margin-left: 10px;
+  }
+
+  .toggle-comment-form:hover {
+    cursor: pointer;
+  }
+
+  .comment-form {
+    display: none;
+  }
+
   .post-header {
     border-bottom: $content-border;
     background: #eee;
@@ -22,7 +34,7 @@
       right: 15px;
       top:15px;
     }
-    
+
     h1, h2, h3, h4, h5, h6, p {
       margin-top: 0;
       margin-bottom: 0;

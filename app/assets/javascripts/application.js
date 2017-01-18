@@ -16,3 +16,6 @@
 //= require conversation_forms
 //= require turbolinks
 //= require_tree .
+$(document).ready(function() {
+  DANEBOOK.Comments.View.init();
+})
