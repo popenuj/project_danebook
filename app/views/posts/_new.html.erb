@@ -1,6 +1,6 @@
 <div class="row">
-  <section class="post-content col-xs-12">
-    <%= simple_form_for post, url: user_posts_path(current_user) do |f| %>
+  <section class="new-post-form post-content col-xs-12">
+    <%= simple_form_for post, url: user_posts_path(current_user), remote: true do |f| %>
       <%= f.input :post_text %>
   </section>
 </div>

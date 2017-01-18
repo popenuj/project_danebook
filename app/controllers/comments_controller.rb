@@ -6,19 +6,23 @@ class CommentsController < ApplicationController
 
   def create
     if params[:post_id]
-      post = Post.find(params[:post_id])
-      current_user.posts.find(post.id).comments.create!(comment_params)
+      @post = Post.find(params[:post_id])
+      @comment = current_user.posts.find(@post.id).comments.create!(comment_params)
+      respond_to do |format|
+        format.js
+      end
     else
       photo = Photo.find(params[:photo_id])
-      current_user.photos.find(photo.id).comments.create!(comment_params)
+      @comment = current_user.photos.find(photo.id).comments.create!(comment_params)
     end
-    redirect_to :back
   end
 
   def destroy
-    comment = Comment.find(params[:id])
-    comment.destroy!
-    redirect_to :back
+    @comment = Comment.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+    @comment.destroy!
   end
 
   private

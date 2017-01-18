@@ -12,7 +12,6 @@
           <%= render partial: 'shared/basic_about', locals: {:user => current_user}  %>
         </section>
       </div>
-
       <div class="row">
         <section class="post post-small col-xs-12">
           <div class="row">
@@ -23,72 +22,19 @@
           <div class="row">
             <section class="post-content col-xs-12">
               <div class="row">
-
-                <div class="col-xs-6 col-md-4 photo">
-                  <a href="#">
-                    <img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/icon_photo_small.png" alt="photo">
-                  </a>
-                </div>
-
-                <div class="col-xs-6 col-md-4 photo">
-                  <a href="#">
-                    <img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/icon_photo_small.png" alt="photo">
-                  </a>
-                </div>
-
-                <div class="col-xs-6 col-md-4 photo">
-                  <a href="#">
-                    <img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/icon_photo_small.png" alt="photo">
-                  </a>
-                </div>
-
-                <div class="col-xs-6 col-md-4 photo">
-                  <a href="#">
-                    <img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/icon_photo_small.png" alt="photo">
-                  </a>
-                </div>
-
-                <div class="col-xs-6 col-md-4 photo">
-                  <a href="#">
-                    <img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/icon_photo_small.png" alt="photo">
-                  </a>
-                </div>
-
-                <div class="col-xs-6 col-md-4 photo">
-                  <a href="#">
-                    <img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/icon_photo_small.png" alt="photo">
-                  </a>
-                </div>
-
-                <div class="col-xs-6 col-md-4 photo">
-                  <a href="#">
-                    <img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/icon_photo_small.png" alt="photo">
-                  </a>
-                </div>
-
-                <div class="col-xs-6 col-md-4 photo">
-                  <a href="#">
-                    <img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/icon_photo_small.png" alt="photo">
-                  </a>
-                </div>
-
-                <div class="col-xs-6 col-md-4 photo">
-                  <a href="#">
-                    <img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/icon_photo_small.png" alt="photo">
-                  </a>
-                </div>
-
+                <% if @photos.size > 0 %>
+                  <% @photos.each do |p1, p2, p3| %>
+                    <%= render partial: "shared/photo_row", locals: { p1: p1, p2: p2, p3: p3 } %>
+                  <% end %>
+                <% end %>
                 <div class="col-xs-12 text-center">
-                  <h4><a href="photos.html">See More Photos</a></h4>
+                  <h4><%= link_to "See More Photos", user_photos_path(current_user) %></h4>
                 </div>
               </div>
             </section>
           </div>
-
         </section>
       </div>
-
-
       <div class="row">
         <section class="post post-small col-xs-12">
           <div class="row">
@@ -96,7 +42,6 @@
               <p>Friends</p>
             </header>
           </div>
-
           <div class="row">
             <section class="post-content col-xs-12">
               <div class="row">
@@ -110,146 +55,29 @@
                 <% else %>
                   <p>Please checkout the Timeline or use the search bar to locate your friends on Danebook!</p>
                 <% end %>
-
                 <div class="col-xs-12 text-center">
-                  <h4><a href="friends.html">See More Friends</a></h4>
+                  <h4><a href=>See More Friends</a></h4>
                 </div>
               </div>
             </section>
           </div>
-
         </section>
       </div>
     </div>
-
-
-
-
-    <div class="col-sm-7 col-md-8">
-
+    <div class="col-sm-7 col-md-8" id="new-post-hook">
       <div class="row">
-
         <section class="post post-small col-xs-12">
           <div class="row">
             <header class="post-header col-xs-12">
               <p>Post</p>
             </header>
           </div>
-
           <%= render partial: '/posts/new', locals: { :post => @post } %>
         </section>
-
       </div>
     </div>
     <% @posts.each do |post| %>
       <%= render partial: '/posts/show', locals: {:post => post} %>
     <% end %>
-    <div class="row">
-
-      <section class="post post-small col-xs-12">
-
-        <div class="row">
-          <section class="post-content col-xs-12">
-
-            <div class="row">
-              <div class="profile col-xs-12">
-                <div class="profile-img pull-left">
-                  <a href="about.html"><img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/harry_potter_small.jpg" alt=""></a>
-                </div>
-                <div class="profile-info pull-left">
-                  <a href="about.html">Harry Potter</a>
-                  <p><small>Posted on Thursday 5/31/2014</small></p>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-12">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores harum quisquam nostrum veritatis, provident maiores deleniti vero earum sunt ex quam modi magni, sed hic atque rerum eveniet? Nam, voluptatum.</p>
-                </div>
-              </div>
-
-            </section>
-          </div>
-
-          <div class="row">
-            <section class="post-footer col-xs-12">
-              <div class="row">
-                <section class="links col-xs-12">
-                  <a class="public" href="#">Like</a>
-                  <a class="public" href="#">Comment</a>
-                  <a href="#" class="private pull-right">Delete</a>
-                </section>
-                <section class="likes col-xs-12">
-                  <p>
-                    You, <a href="about.html">Hermione Granger</a> and 3 others like this
-                  </p>
-                </section>
-                <section class="comments col-xs-12">
-                  <div class="row">
-                    <div class="profile col-xs-12">
-                      <div class="profile-img pull-left">
-                        <a href="about.html"><img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/user_silhouette_generic.gif" alt=""></a>
-                      </div>
-                      <div class="comment pull-left">
-                        <p>
-                          <a href="about.html">Ron Weasley</a>
-                          <small class="muted">
-                            Said on Thrsday 5/21/2014
-                          </small>
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut at, necessitatibus accusamus quo impedit, laboriosam nemo aut facere iure eos ex omnis nihil nesciunt! Placeat unde animi vitae dolore mollitia. ipsum dolor sit amet, consectetur adipisicing elit. Iusto dicta tenetur, est nemo in tempore obcaecati commodi architecto provident necessitatibus reiciendis delectus veritatis rerum ipsum ipsam corrupti, doloribus possimus a. ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, veritatis, accusamus! Laboriosam ducimus error dolor natus neque quis consectetur deleniti magni sapiente expedita, iure animi in corporis inventore architecto. A.
-                        </p>
-                        <p>
-                          <a href="#">Like</a>
-                          <span class="muted">3 other people like this</span>
-                        </p>
-                      </div>
-                    </div>
-
-                    <div class="profile col-xs-12">
-                      <div class="profile-img pull-left">
-                        <a href="about.html"><img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/harry_potter_small.jpg" alt=""></a>
-                      </div>
-                      <div class="comment pull-left">
-                        <p>
-                          <a href="about.html">Harry Potter</a>
-                          <small class="muted">
-                            Said on Thrsday 5/21/2014
-                          </small>
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut at, necessitatibus accusamus quo impedit, laboriosam nemo aut facere iure eos ex omnis nihil nesciunt! Placeat unde animi vitae dolore mollitia. ipsum dolor sit amet, consectetur adipisicing elit. Iusto dicta tenetur, est nemo in tempore obcaecati commodi architecto provident necessitatibus reiciendis delectus veritatis rerum ipsum ipsam corrupti, doloribus possimus a. ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, veritatis, accusamus! Laboriosam ducimus error dolor natus neque quis consectetur deleniti magni sapiente expedita, iure animi in corporis inventore architecto. A.
-                        </p>
-                        <p>
-                          <a href="#">Like</a>
-                          <span class="muted">3 other people like this</span>
-                          <a href="#" class="pull-right">Delete</a>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- <form class="form-horizontal">
-
-                    <label for="comment-thoughts-2" class="sr-only">Write a Comment..</label>
-                    <textarea type="text" id="comment-thoughts-2" name="thoughts" class="form-control" rows="3" placeholder="Write a Comment.."></textarea>
-
-                    <a href="#">Cancel</a>
-                    <button type="submit" class="btn btn-primary pull-right">Comment</button>
-
-                  </form> -->
-                </section>
-              </div>
-              <div class="clearfix"></div>
-            </section>
-          </div>
-
-        </section>
-
-      </div>
-    </div>
-
   </div>
 </div>

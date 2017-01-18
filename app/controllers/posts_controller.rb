@@ -13,7 +13,16 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(whitelisted_post_params)
     if @post.save
-      redirect_to users_path
+      @comments = Comment.all
+      @comment = Comment.new
+      respond_to do |format|
+        format.js
+      end
+    else
+      flash.now[:danger]
+      respond_to do |format|
+        format.js {head :none}
+      end
     end
   end
 

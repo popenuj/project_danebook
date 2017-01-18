@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @comments = Comment.all
     @friends = current_user.friended_users
     @users = User.all
+    @photos = current_user.photos
   end
 
   def new

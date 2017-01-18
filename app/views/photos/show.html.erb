@@ -1,74 +1,78 @@
 <%= link_to "View all your photos", user_photos_path(current_user) %>
 <%= image_tag @photo.photo.expiring_url(60) %>
 <% if @photo.user == current_user %>
-  <% if current_user.profile.profile_photo_id != @photo.id %>
-      <%= link_to "Make this your profile photo.", user_profile_path( current_user.profile, {profile_photo_id: @photo.id }), method: :put %>
-  <% end %>
-  <% if current_user.profile.cover_photo_id != @photo.id %>
-    <%= link_to "Make this your cover photo.", user_profile_path( current_user.profile, {cover_photo_id: @photo.id }), method: :put, class: "pull-right" %>
-  <% end %>
+<% if current_user.profile.profile_photo_id != @photo.id %>
+<%= link_to "Make this your profile photo.", user_profile_path( current_user.profile, {profile_photo_id: @photo.id }), method: :put %>
+<% end %>
+<% if current_user.profile.cover_photo_id != @photo.id %>
+<%= link_to "Make this your cover photo.", user_profile_path( current_user.profile, {cover_photo_id: @photo.id }), method: :put, class: "pull-right" %>
+<% end %>
 <% end %>
 <br>
 <% if current_user.liked_photos.include?(@photo) %>
-  <%= link_to "Unlike this Photo", photo_like_path(@photo),  method: :delete %>
+<%= link_to "Unlike this Photo", photo_like_path(@photo),  method: :delete %>
 <% else %>
-  <%= link_to "Like this Photo", photo_like_path(@photo), method: :post %>
+<%= link_to "Like this Photo", photo_like_path(@photo), method: :post %>
 <% end %>
 <% if @photo.user == current_user %>
-  <% if @photo.id != current_user.profile.profile_photo_id &&
-    @photo.id != current_user.profile.cover_photo_id %>
-    <%= link_to "Delete this Photo", photo_path(@photo), method: :delete, class: "pull-right" %>
+<% if @photo.id != current_user.profile.profile_photo_id &&
+  @photo.id != current_user.profile.cover_photo_id %>
+  <%= link_to "Delete this Photo", photo_path(@photo), method: :delete, class: "pull-right" %>
   <% end %>
-<% end %>
-<hr>
-<% @comments.each do |comment| %>
-  <% if comment.commentable_id == @photo.id %>
-    <div class="row">
-      <section class="comment col-xs-12">
-        <div class="row">
-          <div class="profile col-xs-12">
-            <div class="profile-img pull-left">
-              <a href="about.html"><img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/harry_potter_small.jpg" alt=""></a>
-            </div>
-            <div class="comment pull-left">
-              <%= link_to "#{comment.user.profile.first_name} #{comment.user.profile.last_name}", user_profile_path(comment.user) %>
-              <p><small>Said on <%= format_time(comment.created_at) %></small></p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <p>
-              <%= comment.comment_text %>
-            </p>
-          </div>
-        </div>
-      </section>
-    </div>
-    <section class="links col-xs-12">
-      <% if current_user.liked_comments.include?(comment) %>
-        <%= link_to "Unlike", comment_like_path(comment),  method: :delete %>
-      <% else %>
-        <%= link_to "Like", comment_like_path(comment), method: :post %>
-      <% end %>
-      <%= link_to "Delete Comment", photo_comment_path(@photo.id, comment.id), method: :delete, class: "pull-right" if valid_post_user?(comment) %>
-    </section>
-  <% else %>
-    <% next %>
   <% end %>
   <hr>
-<% end %>
-<hr>
-<div class="row">
-  <section class="col-xs-12">
-    <%= simple_form_for @comment, url: photo_comments_path(@photo) do |f| %>
+  <div class="row">
+    <div class="post-footer col-xs-12">
+      <% @comments.each do |comment| %>
+      <% if comment.commentable_id == @photo.id %>
+      <div class="row">
+        <section class="comment col-xs-12">
+          <div class="row">
+            <div class="profile col-xs-12">
+              <div class="profile-img pull-left">
+                <a href="about.html"><img src="https://s3.amazonaws.com/viking_education/web_development/web_app_eng/harry_potter_small.jpg" alt=""></a>
+              </div>
+              <div class="comment pull-left">
+                <%= link_to "#{comment.user.profile.first_name} #{comment.user.profile.last_name}", user_profile_path(comment.user) %>
+                <p><small>Said on <%= format_time(comment.created_at) %></small></p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <p>
+                <%= comment.comment_text %>
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+      <section class="links col-xs-12">
+        <% if current_user.liked_comments.include?(comment) %>
+        <%= link_to "Unlike", comment_like_path(comment),  method: :delete %>
+        <% else %>
+        <%= link_to "Like", comment_like_path(comment), method: :post %>
+        <% end %>
+        <%= link_to "Delete Comment", photo_comment_path(@photo.id, comment.id), method: :delete, class: "pull-right" if valid_post_user?(comment) %>
+      </section>
+      <% else %>
+      <% next %>
+      <% end %>
+      <hr>
+      <% end %>
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <section class="col-xs-12">
+      <%= simple_form_for @comment, url: photo_comments_path(@photo) do |f| %>
       <%= f.input :comment_text %>
-  </section>
-</div>
-<div class="row">
-  <section class="post-footer col-xs-12">
+    </section>
+  </div>
+  <div class="row">
+    <section class="post-footer col-xs-12">
       <%= f.button :submit %>
       <div class="clearfix"></div>
-    <% end %>
-  </section>
-</div>
+      <% end %>
+    </section>
+  </div>

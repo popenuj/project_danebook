@@ -1,0 +1,2 @@
+$("#new-post-hook").after("<%= j(render partial: 'posts/show', locals: { post: @post } ) %>")
+$("#post_post_text").val(null)
