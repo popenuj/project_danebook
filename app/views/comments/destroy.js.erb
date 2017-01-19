@@ -1,2 +1,4 @@
-var comment = "[data-comment-id=<%= @comment.id %>]";
-$(comment).remove();
+(function() {
+  var comment = "[data-comment-id=<%= @comment.id %>]";
+  $(comment).fadeOut(500, $(comment).remove);
+})()

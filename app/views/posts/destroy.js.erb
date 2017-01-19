@@ -1,2 +1,4 @@
-var post = "[data-post-id=<%= @post.id %>]";
-$(post).fadeOut(500)
+(function() {
+  var post = "[data-post-id=<%= @post.id %>]";
+  $(post).fadeOut(500, $(post).remove)
+})()
