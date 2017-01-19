@@ -64,7 +64,7 @@
         </section>
       </div>
     </div>
-    <div class="col-sm-7 col-md-8" id="new-post-hook">
+    <div class="col-sm-7 col-md-8">
       <div class="row">
         <section class="post post-small col-xs-12">
           <div class="row">
@@ -74,10 +74,10 @@
           </div>
           <%= render partial: '/posts/new', locals: { :post => @post } %>
         </section>
+        <% @posts.each do |post| %>
+          <%= render partial: '/posts/show', locals: {:post => post} %>
+        <% end %>
       </div>
     </div>
-    <% @posts.each do |post| %>
-      <%= render partial: '/posts/show', locals: {:post => post} %>
-    <% end %>
   </div>
 </div>
